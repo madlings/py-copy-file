@@ -9,5 +9,8 @@ def copy_file(command: str) -> None:
     # Do nothing if the source and destination names are the same
     if source_name == destination_name:
         return
-    with open(source_name, "r") as file_in, open(destination_name, "w") as file_out:
-        file_out.write(file_in.read())
+    try:
+        with open(source_name, "r") as file_in, open(destination_name, "w") as file_out:
+            file_out.write(file_in.read())
+    except FileNotFoundError:
+        return

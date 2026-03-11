@@ -1,4 +1,4 @@
-def copy_file(command):
+def copy_file(command: str) -> None:
     # Split the command into components
     parts = command.split()
     # Validate that there are exactly 3 elements and starts with "cp"
@@ -11,10 +11,15 @@ def copy_file(command):
         return
     try:
         # Open both files: source for reading and destination for writing
-        with open(source_name, "r") as file_in, open(destination_name, "w") as file_out:
-            # Copy the entire content
-            file_out.write(file_in.read())
+        with (
+            open(source_name, "r") as file_in,
+            open(destination_name, "w") as file_out,
+        ):
+    # Copy the entire content
+    file_out.write(file_in.read())
     except FileNotFoundError:
         print(f"Error: The file '{source_name}' does not exist.")
+        raise
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+        raise
